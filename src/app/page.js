@@ -20,6 +20,7 @@ export default function Home() {
     [3, 1],
   ]);
 
+
   useInterval(() => {
     gameLoop();
   }, speed);
@@ -39,6 +40,7 @@ export default function Home() {
     setFallingBlocks(newFallingBlocks);
   }
 
+
   function goRight() {
     const newFallingBlocks = JSON.parse(JSON.stringify(fallingBlocks));
 
@@ -49,6 +51,7 @@ export default function Home() {
     placeMinoToTetris(newFallingBlocks);
     setFallingBlocks(newFallingBlocks);
   }
+
 
   function goLeft() {
     const newFallingBlocks = JSON.parse(JSON.stringify(fallingBlocks));
@@ -74,6 +77,7 @@ export default function Home() {
     setTetris(newTetris);
   }
 
+  
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       switch (e.code) {
@@ -91,21 +95,21 @@ export default function Home() {
 
   return (
     <>
-    <div className="flex flex-col items-center p-16">
-      {tetris.map((row, rowIndex) => (
-        <div className="flex" key={rowIndex}>
-          {row.map((block, blockIndex) => (
-            <Block key = {blockIndex} colorIndex = {block}/>
-          ))}
-        </div>
-      ))}
-    </div>
+      <div className="flex flex-col items-center p-16">
+        {tetris.map((row, rowIndex) => (
+          <div className="flex" key={rowIndex}>
+            {row.map((block, blockIndex) => (
+              <Block key={blockIndex} colorIndex={block} />
+            ))}
+          </div>
+        ))}
+      </div>
     </>
-  )
+  );
 }
 
 const colors = ["bg-slate-500", "bg-yellow-500", "bg-red-500", "bg-blue-500"];
 
 function Block({ colorIndex }) {
-  return <div className={`w-5 h-5 rounded ${colors[colorIndex]}`}></div>
+  return <div className={`w-5 h-5 rounded ${colors[colorIndex]}`}></div>;
 }
